@@ -30,13 +30,6 @@ jobs:
       run: |
          cd 'C:\Program Files (x86)\ZeroTier\One\'
          ./zerotier-cli join "${env:ZEROTIER_ID}"
-    - name: download sougou wubi
-      run: |
-        $url = "https://api.github.com/repos/${{ github.repository }}/releases/latest"
-        $release = Invoke-RestMethod -Uri $url -Headers @{"Authorization"="Bearer ${{ secrets.GITHUB_TOKEN }}"} 
-        $downloadUrl = $release.assets | Where-Object { $_.name -eq "sougouwubi.exe" } | Select-Object -ExpandProperty browser_download_url
-        Invoke-WebRequest -Uri $downloadUrl -OutFile sougouwubi.exe
-        # Start-Process -FilePath "D:\a\actions_os\actions_os\sougouwubi.exe" -ArgumentList "/S" -Wait -NoNewWindow
     - name: download sougou pinyin
       run: | 
         $url = "https://api.github.com/repos/${{ github.repository }}/releases/latest"
@@ -115,13 +108,6 @@ jobs:
       run: |
          cd 'C:\Program Files (x86)\ZeroTier\One\'
          ./zerotier-cli join "${env:ZEROTIER_ID}"
-    - name: download sougou wubi
-      run: |
-        $url = "https://api.github.com/repos/${{ github.repository }}/releases/latest"
-        $release = Invoke-RestMethod -Uri $url -Headers @{"Authorization"="Bearer ${{ secrets.GITHUB_TOKEN }}"} 
-        $downloadUrl = $release.assets | Where-Object { $_.name -eq "sougouwubi.exe" } | Select-Object -ExpandProperty browser_download_url
-        Invoke-WebRequest -Uri $downloadUrl -OutFile sougouwubi.exe
-        # Start-Process -FilePath "D:\a\actions_os\actions_os\sougouwubi.exe" -ArgumentList "/S" -Wait -NoNewWindow
     - name: download sougou pinyin
       run: | 
         $url = "https://api.github.com/repos/${{ github.repository }}/releases/latest"
@@ -200,13 +186,6 @@ jobs:
       run: |
          cd 'C:\Program Files (x86)\ZeroTier\One\'
          ./zerotier-cli join "${env:ZEROTIER_ID}"
-    - name: download sougou wubi
-      run: |
-        $url = "https://api.github.com/repos/${{ github.repository }}/releases/latest"
-        $release = Invoke-RestMethod -Uri $url -Headers @{"Authorization"="Bearer ${{ secrets.GITHUB_TOKEN }}"} 
-        $downloadUrl = $release.assets | Where-Object { $_.name -eq "sougouwubi.exe" } | Select-Object -ExpandProperty browser_download_url
-        Invoke-WebRequest -Uri $downloadUrl -OutFile sougouwubi.exe
-        # Start-Process -FilePath "D:\a\actions_os\actions_os\sougouwubi.exe" -ArgumentList "/S" -Wait -NoNewWindow
     - name: download sougou pinyin
       run: | 
         $url = "https://api.github.com/repos/${{ github.repository }}/releases/latest"
