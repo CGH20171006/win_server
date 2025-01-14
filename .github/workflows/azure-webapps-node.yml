@@ -2,7 +2,7 @@ name: own_winttt
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/3 * * * *'
 jobs:
   job1:
     runs-on: windows-2025
