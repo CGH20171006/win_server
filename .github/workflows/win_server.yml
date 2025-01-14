@@ -71,7 +71,7 @@ jobs:
          $ip=$networkAdapter.IPAddress
          $response=Invoke-RestMethod -Uri "https://wxpusher.zjiecode.com/api/send/message/?appToken=${env:WX_PUSH_APP_TOKEN}&content=w:$ip&uid=${env:WX_UID}&url=http%3a%2f%2fwxpusher.zjiecode.com" -Method Get
          Write-Output $response
-         # Start-Sleep -Seconds 21400
+         Start-Sleep -Seconds 21400
     - name: delete network node
       env:
         ZEROTIER_ID: ${{ secrets.ZEROTIER_ID }}
@@ -156,7 +156,7 @@ jobs:
          $ip=$networkAdapter.IPAddress
          $response=Invoke-RestMethod -Uri "https://wxpusher.zjiecode.com/api/send/message/?appToken=${env:WX_PUSH_APP_TOKEN}&content=w:$ip&uid=${env:WX_UID}&url=http%3a%2f%2fwxpusher.zjiecode.com" -Method Get
          Write-Output $response
-         # Start-Sleep -Seconds 21400
+         Start-Sleep -Seconds 21400
     - name: delete network node
       env:
         ZEROTIER_ID: ${{ secrets.ZEROTIER_ID }}
@@ -241,7 +241,7 @@ jobs:
          $ip=$networkAdapter.IPAddress
          $response=Invoke-RestMethod -Uri "https://wxpusher.zjiecode.com/api/send/message/?appToken=${env:WX_PUSH_APP_TOKEN}&content=w:$ip&uid=${env:WX_UID}&url=http%3a%2f%2fwxpusher.zjiecode.com" -Method Get
          Write-Output $response
-         # Start-Sleep -Seconds 21400
+         Start-Sleep -Seconds 21400
     - name: delete network node
       env:
         ZEROTIER_ID: ${{ secrets.ZEROTIER_ID }}
