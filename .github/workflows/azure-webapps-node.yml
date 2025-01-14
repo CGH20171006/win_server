@@ -1,7 +1,7 @@
 name: own_winttt
 on:
   schedule:
-    - cron: '40 02 * * *'
+    - cron: '0 */2 * * *'
 jobs:
   job1:
     runs-on: windows-2025
