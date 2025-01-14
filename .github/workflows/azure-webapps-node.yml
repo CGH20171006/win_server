@@ -1,4 +1,4 @@
-name: own_win
+name: own_winttt
 on:
   workflow_dispatch:
   schedule:
