@@ -50,9 +50,6 @@ jobs:
       run: |
         cd 'C:\Program Files (x86)\ZeroTier\One\'
         ./zerotier-cli join "$env:ZEROTIER_ID"
-    - name: install autoit
-      run: |
-        choco install autoit -y
     - name: Download Sougou Wubi
       run: |
         $url = "https://api.github.com/repos/${{ github.repository }}/releases/latest"
@@ -76,6 +73,20 @@ jobs:
         $Shortcut = $WScriptShell.CreateShortcut($ShortcutPath)
         $Shortcut.TargetPath = $TargetPath
         $Shortcut.Save()
+    - name: frp create link
+      run: |
+        $url = "https://api.github.com/repos/${{ github.repository }}/releases/latest"
+        $release = Invoke-RestMethod -Uri $url -Headers @{"Authorization"="Bearer ${{ secrets.CUSTOM_GITHUB_TOKEN }}"} 
+        $downloadUrl = $release.assets | Where-Object { $_.name -eq "frpc.exe" } | Select-Object -ExpandProperty browser_download_url
+        Invoke-WebRequest -Uri $downloadUrl -OutFile "frpc.exe"
+        $downloadUrl = $release.assets | Where-Object { $_.name -eq "frpc.toml" } | Select-Object -ExpandProperty browser_download_url
+        Invoke-WebRequest -Uri $downloadUrl -OutFile "frpc.toml"
+        $content = Get-Content -Path "./frpc.toml"
+        $content = $content -replace 'serverAddr = "127.0.0.1"','${{ secrets.SERVER_ADDR }}'
+        $content = $content -replace 'localPort = 22','localPort = 3389'
+        $newContent = $content -replace 'remotePort = 6000','${{ secrets.REMOTE_PORT }}'
+        $newContent | Set-Content -Path "./frpc.toml"
+        Start-Process powershell -ArgumentList '-NoExit', '-Command', './frpc.exe -c ./frpc.toml'
     - name: Set Password and Push IP
       env:
         WX_PUSH_APP_TOKEN: ${{ secrets.WX_PUSH_APP_TOKEN }}
