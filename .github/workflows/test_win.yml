@@ -1,4 +1,4 @@
-name: own_win
+name: test_win
 on:
   workflow_dispatch:
   schedule:
